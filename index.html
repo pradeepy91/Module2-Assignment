@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Custom Service</title>
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="Service">
+    <h3>to Buy List</h3>
+    <div ng-controller="ToBuyController as toBuy">
+      <ol>
+        <li ng-repeat="item in toBuy.items">Buy  {{item.quantity}} {{item.name}}
+          <button type="button" name="Add item" ng-click="toBuy.addItem($index)">Buy Item</button>
+        </li>
+      </ol>
+      <span ng-show="toBuy.errorMessage">{{toBuy.errorMessage}}</span>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <h3>Bought List</h3>
+    <div ng-controller="AlreadyBoughtController as boughtList">
+      <ol>
+        <li ng-repeat="item in boughtList.items">{{item.name}} contains {{item.quantity}}</li>
+      </ol>
+      <span ng-show="boughtList.errorMessage()">{{boughtList.errorMessage()}}</span>
+    </div>
+
+  </body>
+</html>
