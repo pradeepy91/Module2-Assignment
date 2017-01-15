@@ -1,32 +1,32 @@
 (function(){
   'use strict'
-  var myApp = angular.module("Service",[]);
+  var myApp = angular.module("ShoppingListCheckOff",[]);
   myApp.controller("ToBuyController",ToBuyController);
   myApp.controller("AlreadyBoughtController",AlreadyBoughtController);
-  myApp.service("CustomService",CustomService);
-  ToBuyController.$inject = ['CustomService'];
-  function ToBuyController(CustomService){
+  myApp.service("ShoppingListCheckOffService",ShoppingListCheckOffService);
+  ToBuyController.$inject = ['ShoppingListCheckOffService'];
+  function ToBuyController(ShoppingListCheckOffService){
     var toBuy = this;
-    toBuy.items = CustomService.getBuyItems();
+    toBuy.items = ShoppingListCheckOffService.getBuyItems();
     toBuy.addItem = function (index) {
       var item = toBuy.items[index];
-      CustomService.addItem(item.name,item.quantity,index);
+      ShoppingListCheckOffService.addItem(item.name,item.quantity,index);
       console.log("Items legnth in Buy items,",toBuy.items.length);
       if(toBuy.items.length<=0){
-        toBuy.errorMessage ="All items are Bought."
+        toBuy.errorMessage ="Everything is bought!"
       }
     };
   }
-  AlreadyBoughtController.$inject = ['CustomService','$scope']
-  function AlreadyBoughtController(CustomService,$scope){
+  AlreadyBoughtController.$inject = ['ShoppingListCheckOffService','$scope']
+  function AlreadyBoughtController(ShoppingListCheckOffService,$scope){
     var boughtList = this;
-    boughtList.items = CustomService.getBoughtItems();
+    boughtList.items = ShoppingListCheckOffService.getBoughtItems();
     boughtList.errorMessage = function (){
-      return CustomService.getErrorMessage();
+      return ShoppingListCheckOffService.getErrorMessage();
     };
-    //boughtList.errorMessage= CustomService.getErrorMessage();
+    //boughtList.errorMessage= ShoppingListCheckOffService.getErrorMessage();
   }
-  function CustomService() {
+  function ShoppingListCheckOffService() {
     var service = this;
     var items = [
       {name:'Cookies',quantity:10},

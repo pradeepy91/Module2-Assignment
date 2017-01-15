@@ -6,8 +6,8 @@
     <script src="angular.js"></script>
     <script src="app.js"></script>
   </head>
-  <body ng-app="Service">
-    <h3>to Buy List</h3>
+  <body ng-app="ShoppingListCheckOff">
+    <h3>To Buy</h3>
     <div ng-controller="ToBuyController as toBuy">
       <ol>
         <li ng-repeat="item in toBuy.items">Buy  {{item.quantity}} {{item.name}}
@@ -20,10 +20,10 @@
     <br>
     <br>
     <br>
-    <h3>Bought List</h3>
+    <h3>Already Bought</h3>
     <div ng-controller="AlreadyBoughtController as boughtList">
       <ol>
-        <li ng-repeat="item in boughtList.items">{{item.name}} contains {{item.quantity}}</li>
+        <li ng-repeat="item in boughtList.items">Bought {{item.quantity}} {{item.name}}</li>
       </ol>
       <span ng-show="boughtList.errorMessage()">{{boughtList.errorMessage()}}</span>
     </div>
